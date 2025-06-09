@@ -5,11 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Widget</title>
     <style>
-        body {
+        html, body {
             margin: 0;
             padding: 0;
             overflow: hidden;
+            height: 100%;
+            width: 100%;
+        }
+        body {
             background: transparent;
+        }
+        .talkcenter-widget-container,
+        #talkcenter-widget,
+        [class*="talkcenter"] {
+            overflow: hidden !important;
         }
     </style>
 </head>
