@@ -5,20 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Widget</title>
     <style>
+        * {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+        *::-webkit-scrollbar {
+            display: none; /* Chrome/Safari/Opera */
+        }
         html, body {
             margin: 0;
             padding: 0;
             overflow: hidden;
             height: 100%;
             width: 100%;
+            position: relative;
         }
         body {
             background: transparent;
-        }
-        .talkcenter-widget-container,
-        #talkcenter-widget,
-        [class*="talkcenter"] {
-            overflow: hidden !important;
         }
     </style>
 </head>
@@ -29,6 +32,17 @@
         tc.type = "text/javascript";
         tc.async = true;
         tc.src = "https://app.talkcenter.io/v2/talkcenter.min.js";
+        
+        tc.onload = function() {
+            setTimeout(function() {
+                var containers = document.querySelectorAll('[class*="talkcenter"], [id*="talkcenter"]');
+                containers.forEach(function(el) {
+                    el.style.overflow = 'hidden';
+                    el.style.height = '100%';
+                });
+            }, 1000);
+        };
+        
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(tc, s);
     })();
